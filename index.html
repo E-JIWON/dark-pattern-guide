@@ -158,8 +158,8 @@ details .qa p:last-child{color:var(--ink-2);margin:0}
 .shots figure{margin:0;min-width:0;display:flex;flex-direction:column;gap:7px}
 .shots figure.wide{grid-column:span 2}
 @media (max-width:420px){.shots figure.wide{grid-column:1/-1}}
-.shots a{display:block;background:#fff;border:1px solid var(--border);border-radius:var(--r-m);padding:6px;overflow:hidden;box-shadow:var(--shadow-s);transition:transform .2s,box-shadow .2s}
-.shots a:hover{transform:translateY(-2px);box-shadow:var(--shadow-m)}
+.shots a.zoom{display:block;background:#fff;border:1px solid var(--border);border-radius:var(--r-m);padding:6px;overflow:hidden;box-shadow:var(--shadow-s);transition:transform .2s,box-shadow .2s}
+.shots a.zoom:hover{transform:translateY(-2px);box-shadow:var(--shadow-m)}
 .shots img{display:block;width:100%;height:auto;max-height:340px;object-fit:contain;border-radius:4px}
 .shots figure.tall img{max-height:420px}
 .shots-src{grid-column:1/-1;margin:2px 0 0;font-size:13px;line-height:1.6;color:var(--ink-4)}

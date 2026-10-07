@@ -8,6 +8,7 @@
 - 공정위 원문에 실린 예시 화면 29장
 - 우리 서비스 점검표 (체크 후 마크다운으로 복사)
 - 프로젝트에 바로 복사해 쓰는 [`CHECKLIST.md`](CHECKLIST.md)
+- AI·검색엔진이 읽기 좋은 마크다운 전문 [`guide.md`](guide.md)와 [`llms.txt`](llms.txt)
 
 > 개인이 만든 **비공식 요약**이며 법률 자문이 아닙니다. 실제 위반 여부는 법령, 「전자상거래 등에서의 소비자보호지침」, 공정위 판단이 우선합니다.
 
@@ -46,6 +47,12 @@ mkdir -p .github && curl -fsSL https://raw.githubusercontent.com/E-JIWON/dark-pa
 ```
 
 **AI 코딩 도구로 점검하기**: [`CHECKLIST.md`](CHECKLIST.md) 맨 아래에 Claude Code·Cursor 등에 그대로 붙여 넣는 점검 프롬프트가 있습니다.
+
+**AI 에이전트에게 알려주기**: Claude Code, Codex 등에 아래 주소를 주면 13개 유형 전체를 읽고 답할 수 있습니다.
+
+```text
+https://e-jiwon.github.io/dark-pattern-guide/guide.md
+```
 
 **웹 점검표**: [웹페이지](https://e-jiwon.github.io/dark-pattern-guide/#check)에서 항목을 체크한 뒤 "체크리스트 마크다운 복사"를 누르면 이슈나 PR에 바로 붙일 수 있습니다.
 

@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>다크패턴 가이드라인 정리</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="공정거래위원회 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」(2026.10.6 배포) 13개 유형 요약과 서비스 점검표">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+
+<style>
+/* Layout: bongchil-design-system — 웜 크림 책상(desk) 위 흰 종이 카드. 좌측 글래스 목차 + 720px 읽기 컬럼 */
+:root{
+  --desk:#efe9df; --surface:#ffffff; --surface-warm:#fafaf8; --surface-subtle:#f5f4f0;
+  --ink:#141210; --ink-2:#3b3730; --ink-3:#6b6558; --ink-4:#9c9588;
+  --primary:#5a8268; --primary-hover:#496b55; --primary-light:#e3efe7; --primary-subtle:rgba(90,130,104,.08);
+  --danger:#b4506b; --danger-subtle:rgba(194,96,122,.09);
+  --secondary:#b5612a; --secondary-subtle:rgba(181,97,42,.07);
+  --border:rgba(20,18,16,.07); --border-strong:rgba(20,18,16,.12);
+  --shadow-s:0 1px 3px rgba(60,55,45,.05); --shadow-m:0 4px 16px rgba(60,55,45,.07);
+  --glass:rgba(255,255,255,.62);
+  --desk-bg:radial-gradient(1100px 620px at 16% 8%,rgba(90,130,104,.22),transparent 68%),linear-gradient(160deg,#f7f5f0,#efe9df);
+  --r-s:6px; --r-m:10px; --r-l:16px;
+  --font:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --desk:#171614; --surface:#1e1d1b; --surface-warm:#262523; --surface-subtle:#2e2c29;
+  --ink:#ded9d1; --ink-2:#c9c2b6; --ink-3:#9a9285; --ink-4:#7a7365;
+  --primary:#7aa588; --primary-hover:#8cb89a; --primary-light:rgba(90,130,104,.16); --primary-subtle:rgba(122,165,136,.1);
+  --danger:#d2879c; --danger-subtle:rgba(210,135,156,.12);
+  --secondary:#d4803e; --secondary-subtle:rgba(212,128,62,.1);
+  --border:rgba(232,229,224,.1); --border-strong:rgba(232,229,224,.17);
+  --shadow-s:0 1px 3px rgba(0,0,0,.2); --shadow-m:0 4px 16px rgba(0,0,0,.25);
+  --glass:rgba(30,29,27,.7);
+  --desk-bg:radial-gradient(1100px 620px at 16% 8%,rgba(122,165,136,.06),transparent 68%),linear-gradient(140deg,#1f2219 0%,#191816 55%,#171614 100%);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --desk:#171614; --surface:#1e1d1b; --surface-warm:#262523; --surface-subtle:#2e2c29;
+  --ink:#ded9d1; --ink-2:#c9c2b6; --ink-3:#9a9285; --ink-4:#7a7365;
+  --primary:#7aa588; --primary-hover:#8cb89a; --primary-light:rgba(90,130,104,.16); --primary-subtle:rgba(122,165,136,.1);
+  --danger:#d2879c; --danger-subtle:rgba(210,135,156,.12);
+  --secondary:#d4803e; --secondary-subtle:rgba(212,128,62,.1);
+  --border:rgba(232,229,224,.1); --border-strong:rgba(232,229,224,.17);
+  --shadow-s:0 1px 3px rgba(0,0,0,.2); --shadow-m:0 4px 16px rgba(0,0,0,.25);
+  --glass:rgba(30,29,27,.7);
+  --desk-bg:radial-gradient(1100px 620px at 16% 8%,rgba(122,165,136,.06),transparent 68%),linear-gradient(140deg,#1f2219 0%,#191816 55%,#171614 100%);
+  color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--desk);background-image:var(--desk-bg);background-attachment:fixed;color:var(--ink-2);
+  font:400 16.5px/1.8 var(--font);letter-spacing:-.011em;word-break:keep-all;overflow-wrap:break-word;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+b,strong{font-weight:600;color:var(--ink)}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:24px;padding-block:48px 96px;display:grid;grid-template-columns:232px minmax(0,1fr);gap:40px}
+@media (max-width:920px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px;padding-inline:16px;padding-block:28px 72px}nav.toc{display:none}}
+
+/* 목차 — 글래스 패널 */
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);align-self:start;max-height:calc(100vh - 48px);overflow:auto;
+  background:var(--glass);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
+  border:1px solid var(--border);border-radius:var(--r-l);box-shadow:var(--shadow-m);padding:10px 10px 14px;font-size:14px;line-height:1.45}
+nav.toc h4{margin:14px 10px 4px;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--ink-4)}
+nav.toc h4:first-child{margin-top:6px}
+nav.toc a{display:block;padding:6px 10px;border-radius:var(--r-m);color:var(--ink-2);text-decoration:none;transition:background .15s,color .15s}
+nav.toc a:hover{background:var(--primary-subtle);color:var(--primary)}
+
+main{min-width:0;max-width:740px}
+h1{font-size:clamp(26px,4.2vw,34px);line-height:1.32;font-weight:700;letter-spacing:-.025em;color:var(--ink);margin:10px 0 14px;text-wrap:balance}
+h2{font-size:23px;line-height:1.4;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin:64px 0 16px;text-wrap:balance;scroll-margin-top:24px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 5px var(--primary-subtle);flex:none}
+h3{font-size:19px;line-height:1.45;font-weight:700;letter-spacing:-.018em;color:var(--ink);margin:0}
+p{margin:0 0 12px}
+.meta{color:var(--ink-3);font-size:15px;line-height:1.7}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;color:var(--primary);background:var(--primary-subtle);border-radius:999px;padding:4px 12px}
+.note{background:var(--secondary-subtle);border:1px solid var(--border);border-radius:var(--r-m);padding:14px 18px;font-size:15.5px;line-height:1.75;margin:22px 0}
+.note b{color:var(--secondary)}
+
+/* 카드 공통 — 흰 종이 */
+.tldr,.type,.check,.tbl,.cat{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-m)}
+.tldr{border-radius:var(--r-l);padding:24px 26px;margin-top:28px}
+.tldr ul{margin:12px 0 0;padding-left:0;list-style:none;display:grid;gap:10px}
+.tldr li{position:relative;padding-left:20px;line-height:1.75}
+.tldr li::before{content:"";position:absolute;left:3px;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--primary)}
+
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.cat{border-radius:var(--r-l);padding:16px 18px;box-shadow:var(--shadow-s)}
+.cat strong{display:block;font-size:16.5px}
+.cat small{display:block;color:var(--ink-3);font-size:13.5px;line-height:1.55;margin:4px 0 10px}
+.cat a{display:block;font-size:15px;font-weight:500;color:var(--primary);text-decoration:none;padding:3px 0}
+.cat a:hover{color:var(--primary-hover);text-decoration:underline;text-underline-offset:3px}
+
+.type{border-radius:var(--r-l);padding:26px 26px 22px;margin:18px 0;scroll-margin-top:24px}
+@media (max-width:520px){.type{padding:20px 18px 18px}.tldr{padding:20px}}
+.type header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:12px}
+.type header h3{flex-basis:100%}
+.law{font-size:12.5px;font-weight:500;color:var(--ink-3);background:var(--surface-subtle);border-radius:999px;padding:4px 11px;font-variant-numeric:tabular-nums}
+.fine{font-size:12.5px;font-weight:600;border-radius:999px;padding:4px 11px;background:var(--danger-subtle);color:var(--danger)}
+.key{background:var(--primary-subtle);border-radius:var(--r-m);padding:13px 16px;margin:12px 0 16px;font-size:15.5px;line-height:1.75}
+.key b{color:var(--primary)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.cols{grid-template-columns:1fr}}
+.col{border-radius:var(--r-m);padding:14px 16px;min-width:0}
+.col h5{margin:0 0 8px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px}
+.col ul{margin:0;padding-left:0;list-style:none;font-size:15px;line-height:1.7;display:grid;gap:6px}
+.col li{position:relative;padding-left:16px}
+.col li::before{content:"";position:absolute;left:2px;top:.75em;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.45}
+.bad{background:var(--danger-subtle)} .bad h5{color:var(--danger)} .bad h5::before{content:"✕"}
+.good{background:var(--primary-subtle)} .good h5{color:var(--primary)} .good h5::before{content:"✓"}
+details{border-top:1px solid var(--border);margin-top:16px;padding-top:12px;font-size:15px}
+summary{cursor:pointer;font-weight:600;color:var(--ink-3);list-style-position:outside}
+summary:hover{color:var(--primary)}
+summary:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:4px}
+details .qa{margin:14px 0 0;background:var(--surface-warm);border-radius:var(--r-m);padding:12px 14px}
+details .qa p:first-child{font-weight:600;color:var(--ink);margin-bottom:4px}
+details .qa p:last-child{color:var(--ink-2);margin:0}
+.num{font-variant-numeric:tabular-nums;font-weight:600}
+
+/* 점검표 */
+.check{border-radius:var(--r-l);padding:4px 24px 20px}
+.check fieldset{border:0;padding:0;margin:18px 0 0}
+.check legend{font-weight:700;font-size:15px;color:var(--primary);margin-bottom:4px}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:8px 10px;margin:0 -10px;border-radius:var(--r-m);font-size:15.5px;line-height:1.65;cursor:pointer;transition:background .15s}
+.check label:hover{background:var(--surface-warm)}
+.check label:has(input:checked){color:var(--ink-4)}
+.check input{appearance:none;-webkit-appearance:none;flex:none;width:20px;height:20px;margin-top:3px;border:1.5px solid var(--border-strong);border-radius:6px;background:var(--surface);display:grid;place-content:center;cursor:pointer;transition:background .15s,border-color .15s}
+.check input:checked{background:var(--primary);border-color:var(--primary)}
+.check input:checked::after{content:"";width:9px;height:5px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.progress{position:sticky;top:env(safe-area-inset-top,0px);background:var(--surface);padding:16px 0 12px;border-bottom:1px solid var(--border);font-size:14px;font-weight:500;color:var(--ink-3);z-index:1}
+.bar{height:6px;background:var(--surface-subtle);border-radius:3px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--primary);border-radius:3px;transition:width .25s}
+
+/* 예시 화면 */
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:16px 0}
+.shots-t{grid-column:1/-1;margin:0;font-size:14px;font-weight:600;color:var(--ink-3)}
+.shots.steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:520px){.shots.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.shots figure{margin:0;min-width:0;display:flex;flex-direction:column;gap:7px}
+.shots figure.wide{grid-column:span 2}
+@media (max-width:420px){.shots figure.wide{grid-column:1/-1}}
+.shots a{display:block;background:#fff;border:1px solid var(--border);border-radius:var(--r-m);padding:6px;overflow:hidden;box-shadow:var(--shadow-s);transition:transform .2s,box-shadow .2s}
+.shots a:hover{transform:translateY(-2px);box-shadow:var(--shadow-m)}
+.shots img{display:block;width:100%;height:auto;max-height:340px;object-fit:contain;border-radius:4px}
+.shots figure.tall img{max-height:420px}
+.shots figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3)}
+
+table{border-collapse:collapse;width:100%;font-size:15px}
+.tbl{overflow-x:auto;border-radius:var(--r-l)}
+th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.65}
+th{font-size:13px;color:var(--ink-3);font-weight:600;background:var(--surface-warm)}
+td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.copyrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:4px 0 14px}
+.copyrow button{font:600 14.5px/1 var(--font);color:#fff;background:var(--primary);border:0;border-radius:999px;padding:11px 18px;cursor:pointer;box-shadow:var(--shadow-s);transition:background .15s}
+.copyrow button:hover{background:var(--primary-hover)}
+.copyrow button:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+#copymsg{font-size:14px;color:var(--primary);font-weight:500}
+#mdout{width:100%;min-height:200px;font:13px/1.6 ui-monospace,Menlo,monospace;background:var(--surface);color:var(--ink-2);border:1px solid var(--border-strong);border-radius:var(--r-m);padding:12px;margin-bottom:14px}
+.sources h3{font-size:16px}
+.sources a,footer a{color:var(--primary);text-underline-offset:3px}
+.meta a{color:var(--primary);text-underline-offset:3px}
+footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border-top:1px solid var(--border-strong);padding-top:18px}
+</style>
+</head>
+<body>
+
+
+
+<div class="wrap">
+<nav class="toc" aria-label="목차">
+  <h4>개요</h4>
+  <a href="#tldr">핵심 요약</a>
+  <a href="#map">4개 범주 · 13개 유형</a>
+  <a href="#check">우리 서비스 점검표</a>
+  <h4>편취형</h4>
+  <a href="#t11">숨은갱신</a>
+  <a href="#t12">순차공개 가격책정</a>
+  <h4>오도형</h4>
+  <a href="#t21">특정옵션 사전선택</a>
+  <a href="#t22">잘못된 계층구조</a>
+  <a href="#t23">거짓 할인</a>
+  <a href="#t24">거짓 추천</a>
+  <a href="#t25">유인 판매</a>
+  <a href="#t26">위장 광고</a>
+  <a href="#t27">속임수 질문</a>
+  <h4>방해형</h4>
+  <a href="#t31">취소·탈퇴 방해</a>
+  <a href="#t32">숨겨진 정보</a>
+  <a href="#t33">가격비교 방해</a>
+  <h4>압박형</h4>
+  <a href="#t41">반복간섭</a>
+  <h4>참고</h4>
+  <a href="#penalty">제재 수위</a>
+  <a href="#sources">출처 · 관련 기사</a>
+</nav>
+
+<main>
+<div class="eyebrow">공정거래위원회 · 2026. 10. 6. 배포</div>
+<h1>다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인</h1>
+<p class="meta">출처: 공정위 보도참고자료 및 별첨 가이드라인(2026. 9., 소비자정책국 소비자거래정책과). <a href="#sources">관련 기사 보기</a>. 원문을 기획·개발 관점에서 읽기 쉽게 요약했습니다. 예시 화면은 가이드라인 별첨에 실린 공정위 예시 이미지이며, 클릭하면 원본 크기로 열립니다.</p>
+
+<div class="note"><b>법적 구속력은 없음.</b> 다만 전자상거래법·시행령·「전자상거래 소비자보호지침」의 해석과 공정위 모니터링·시정 사례를 묶어 놓은 문서라, 사실상 단속 기준으로 보면 됩니다. 2023년 자율관리 가이드라인과 2025년 6개 유형 문답서를 통합·현행화한 버전입니다.</div>
+
+<section class="tldr" id="tldr">
+  <h3>핵심 요약</h3>
+  <ul>
+    <li><b>4개 범주, 13개 유형</b>으로 정리. 유형마다 개념 → 핵심 준수사항 → 세부 유의사항 → 위반·모범 예시 → Q&amp;A 구성.</li>
+    <li><b>정기결제 가격 인상·무료→유료 전환</b>은 적용일 전 <span class="num">30일</span> 안에 <b>별도의 명시적 동의</b>. "거부 안 하면 동의 간주"는 위반.</li>
+    <li><b>가격은 첫 화면(검색결과·목록·배너)부터 총금액</b>. 배송비·세금·현장결제 리조트피까지 포함.</li>
+    <li><b>탈퇴·해지 버튼은 로그인 첫 화면이나 한 번 클릭으로 가는 화면(마이페이지 등)</b>에 둘 것을 권고. '보안설정' 안에 숨기면 안 됨.</li>
+    <li><b>가입한 방법 그대로 해지</b>. 앱으로 가입받고 해지는 전화·챗봇만 되는 구조는 금지.</li>
+    <li><b>거절한 걸 다시 묻는 팝업</b>은 <span class="num">7일</span> 이상 "다시 보지 않기" 옵션이 있어야 함.</li>
+    <li>위반 시 시정명령, 영업정지(최대 1년) 또는 과징금, 과태료 <b>최대 1천만~2천만 원</b>.</li>
+  </ul>
+</section>
+
+<h2 id="map">4개 범주 · 13개 유형</h2>
+<div class="map">
+  <div class="cat"><strong>편취형</strong><small>알아채기 어렵게 조작해 예상 못 한 지출 유도</small>
+    <a href="#t11">숨은갱신</a><a href="#t12">순차공개 가격책정</a></div>
+  <div class="cat"><strong>오도형</strong><small>거짓 정보나 기대와 다른 화면으로 착각 유도</small>
+    <a href="#t21">특정옵션 사전선택</a><a href="#t22">잘못된 계층구조</a><a href="#t23">거짓 할인</a><a href="#t24">거짓 추천</a><a href="#t25">유인 판매</a><a href="#t26">위장 광고</a><a href="#t27">속임수 질문</a></div>
+  <div class="cat"><strong>방해형</strong><small>정보 수집·비교에 시간·노력이 들게 해 합리적 선택 포기 유도</small>
+    <a href="#t31">취소·탈퇴 등의 방해</a><a href="#t32">숨겨진 정보</a><a href="#t33">가격비교 방해</a></div>
+  <div class="cat"><strong>압박형</strong><small>심리적 압박으로 특정 행동 유도</small>
+    <a href="#t41">반복간섭</a></div>
+</div>
+
+<h2 id="check">우리 서비스 점검표</h2>
+<p class="meta">가이드라인의 핵심 준수사항을 화면 단위 체크 항목으로 옮겼습니다. 체크 상태는 저장되지 않습니다. 내 프로젝트 이슈·PR에 붙여 쓰려면 아래 버튼으로 마크다운을 복사하거나 <a href="https://github.com/E-JIWON/dark-pattern-guide/blob/main/CHECKLIST.md" target="_blank" rel="noopener">CHECKLIST.md</a>를 받아 가세요.</p>
+<div class="copyrow"><button type="button" id="copymd">체크리스트 마크다운 복사</button><span id="copymsg" role="status"></span></div>
+<textarea id="mdout" readonly hidden aria-label="체크리스트 마크다운"></textarea>
+<form class="check" id="checklist" onsubmit="return false">
+  <div class="progress"><span id="pc">0 / 0 확인</span><div class="bar"><i id="pb"></i></div></div>
+  <fieldset><legend>결제 · 구독</legend>
+    <label><input type="checkbox" id="c1">가격 인상·무료체험 종료 전 30일 안에, 가입과 분리된 별도 동의 절차가 있다</label>
+    <label><input type="checkbox" id="c2">동의 화면에 "동의함 / 동의하지 않음"이 명확한 문구로, 비슷한 크기·색으로 있다 ("확인했습니다" 같은 모호한 문구 X)</label>
+    <label><input type="checkbox" id="c3">동의하지 않은 사용자에게는 인상된 금액이 결제되지 않도록 시스템이 막는다 (무응답 = 동의 처리 X)</label>
+    <label><input type="checkbox" id="c4">동의 후에도 해지할 수 있다는 사실과 해지 조건·방법을 함께 안내한다</label>
+  </fieldset>
+  <fieldset><legend>가격 표시</legend>
+    <label><input type="checkbox" id="c5">검색결과·카테고리 목록·메인 배너 가격이 배송비·세금 등 필수비용을 포함한 총금액이다</label>
+    <label><input type="checkbox" id="c6">총금액을 못 박을 수 없으면, 첫 화면에 제외 항목(예: "배송비 별도")을 표시하고 사유를 첫 화면 또는 바로 연결된 화면에 안내한다</label>
+    <label><input type="checkbox" id="c7">카드·멤버십 조건부 할인가는 조건을 가격 바로 옆에 적었다</label>
+    <label><input type="checkbox" id="c8">할인 기준가는 실제 판매된 적 있는 가격이다</label>
+    <label><input type="checkbox" id="c9">비교가 필요한 상품(식품, 생활용품 등)은 단위가격·중량·수량을 표시한다</label>
+  </fieldset>
+  <fieldset><legend>선택 화면 · 문구</legend>
+    <label><input type="checkbox" id="c10">구매·가입 중 추가상품·부가서비스 옵션이 미리 체크돼 있지 않다 (이전 배송지·결제수단 기본값은 OK)</label>
+    <label><input type="checkbox" id="c11">구매·가입·해지 선택지 사이 크기·색 차이가 한쪽만 고를 수 있는 것처럼 보일 정도로 크지 않다</label>
+    <label><input type="checkbox" id="c23">동의를 묻는 곳에는 거부 선택지도 함께 있다</label>
+    <label><input type="checkbox" id="c12">이중부정 문구가 없고, 한 질문에 한 가지만 묻는다 (일괄동의는 가능, 개별 동의도 가능해야 함)</label>
+  </fieldset>
+  <fieldset><legend>해지 · 탈퇴</legend>
+    <label><input type="checkbox" id="c13">해지·탈퇴 버튼이 로그인 첫 화면 또는 한 번 클릭으로 가는 화면(마이페이지·계정관리)에 있다</label>
+    <label><input type="checkbox" id="c24">'개인정보 수정', '보안설정'처럼 예상하기 어려운 곳에 숨기지 않았다</label>
+    <label><input type="checkbox" id="c14">버튼 이름이 "회원 탈퇴", "멤버십 해지"처럼 직관적이다</label>
+    <label><input type="checkbox" id="c15">해지 클릭 수가 가입 클릭 수보다 많지 않다 (혜택 상실 안내·재확인 반복 단계 없음)</label>
+    <label><input type="checkbox" id="c16">해지 설문은 건너뛸 수 있다</label>
+    <label><input type="checkbox" id="c17">가입한 채널(웹/앱)에서 그대로 해지된다 (전화·1:1 문의·챗봇 전용 X)</label>
+  </fieldset>
+  <fieldset><legend>팝업 · 리뷰 · 광고</legend>
+    <label><input type="checkbox" id="c18">거절한 내용(마케팅 수신, 가격 인상 동의 등)을 다시 묻는 팝업에 "7일간 다시 보지 않기"가 있고, 그 기간을 지킨다</label>
+    <label><input type="checkbox" id="c19">거절한 사용자에게는 팝업 대신 배너로만 변경 가능을 알린다</label>
+    <label><input type="checkbox" id="c20">불리한 리뷰를 숨기거나 정렬로 밀어내지 않는다 (명예훼손 등 법적 임시조치는 예외)</label>
+    <label><input type="checkbox" id="c21">대가를 준 리뷰·콘텐츠에 '광고', '협찬'을 한글로 잘 보이게 표시한다</label>
+    <label><input type="checkbox" id="c22">품절·미판매 상품을 판매 중인 것처럼 노출하지 않고, 재고가 주기적으로 반영된다</label>
+  </fieldset>
+</form>
+
+<h2>편취형</h2>
+
+<article class="type" id="t11">
+  <header><h3>1.1 숨은갱신</h3><span class="law">전자상거래법 §13⑥</span><span class="fine">과태료 ≤1천만 원</span></header>
+  <p>정기결제 금액이 오르거나 무료에서 유료로 바뀔 때, 따로 동의를 받지 않고 갱신·자동결제하는 행위.</p>
+  <div class="key"><b>핵심:</b> 증액·전환일 전 <span class="num">30일</span> 이내에 <b>명시적 동의</b>를 받고, 해지 조건·방법·효과를 고지. 동의 없으면 결제가 안 되게 설계.</div>
+  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class="wide"><a href="img/image1.png" target="_blank" rel="noopener"><img src="img/image1.png" alt="예시1 · 가격 인상: 6.15 인상 → 7.1 결제분부터 적용, 동의 기간 6.1~6.30" loading="lazy"></a><figcaption>예시1 · 가격 인상: 6.15 인상 → 7.1 결제분부터 적용, 동의 기간 6.1~6.30</figcaption></figure><figure class="wide"><a href="img/image2.png" target="_blank" rel="noopener"><img src="img/image2.png" alt="예시2 · 신규 50% 할인 2개월 후 정가 전환" loading="lazy"></a><figcaption>예시2 · 신규 50% 할인 2개월 후 정가 전환</figcaption></figure><figure class=""><a href="img/image3.png" target="_blank" rel="noopener"><img src="img/image3.png" alt="예시3 · "예, 확인하였습니다"만 강조, 거부 항목 없음" loading="lazy"></a><figcaption>예시3 · "예, 확인하였습니다"만 강조, 거부 항목 없음</figcaption></figure></div>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>"기간 내 거부하지 않으면 동의로 간주" 이메일만 보내고 자동 인상 결제</li>
+      <li>신규 할인·무료 프로모션 약관에 "종료 후 정가 자동결제"만 넣고 별도 동의 없음</li>
+      <li>프로모션이 30일 이내라 가입일이 동의 기간에 걸쳐도, 가입과 동시에 일괄 동의 받기</li>
+      <li>"예, 확인하였습니다" 버튼만 강조하고 거부 선택지 없음</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>팝업·푸시·이메일로 일시, 변경 전후 가격, 결제수단 고지 후 동의 받기</li>
+      <li>미동의자는 인상 결제 없이 해지 또는 연장 중단</li>
+      <li>"아니오, 동의하지 않습니다" 같은 명시적 거부 항목 제공, 중립적 문구</li>
+    </ul></div>
+  </div>
+  <details><summary>Q&amp;A 3개</summary>
+    <div class="qa"><p>100회 이용권 소진 시 다음 이용권 자동결제도 동의가 필요한가?</p><p>사용량 기반 결제는 독립된 재구매라 정기결제에 해당하지 않음. 다만 재결제 사항을 명확히 고지하는 것이 권장됨.</p></div>
+    <div class="qa"><p>기존 구독자에게 준 일시 할인이 끝나 원래 가격으로 돌아가는 경우는?</p><p>이미 원래 가격을 내던 소비자이므로 대금 증액으로 보지 않음.</p></div>
+    <div class="qa"><p>가격을 일괄 인상하고 개인별 갱신일에 적용하면 증액일은 언제?</p><p>개별 소비자에게 인상 가격이 적용되는 날(각자의 갱신일) 기준.</p></div>
+  </details>
+</article>
+
+<article class="type" id="t12">
+  <header><h3>1.2 순차공개 가격책정</h3><span class="law">전자상거래법 §21조의2①1</span><span class="fine">과태료 ≤1천만 원</span></header>
+  <p>첫 화면엔 싸게 보여주고, 구매가 진행될수록 필수 추가금을 하나씩 공개해 최종가를 청구하는 행위. 실제 구매로 이어지지 않은 단순 표시·광고만으로도 해당할 수 있음.</p>
+  <div class="key"><b>핵심:</b> '첫 화면'은 가격을 처음 보는 모든 화면(검색결과, 카테고리 목록, 메인, 배너). 여기서부터 <b>총금액</b>(지불을 거부할 수 없는 모든 비용) 표시.</div>
+  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class=""><a href="img/image4.png" target="_blank" rel="noopener"><img src="img/image4.png" alt="예시1 · 첫 화면: 세금 제외가 442,446원 표시" loading="lazy"></a><figcaption>예시1 · 첫 화면: 세금 제외가 442,446원 표시</figcaption></figure><figure class=""><a href="img/image5.png" target="_blank" rel="noopener"><img src="img/image5.png" alt="예시1 · 결제 화면: 세금 포함 521,909원 + 리조트피 별도" loading="lazy"></a><figcaption>예시1 · 결제 화면: 세금 포함 521,909원 + 리조트피 별도</figcaption></figure><figure class=""><a href="img/image6.png" target="_blank" rel="noopener"><img src="img/image6.png" alt="예시2 · 검색결과에 배송비 표시 없음" loading="lazy"></a><figcaption>예시2 · 검색결과에 배송비 표시 없음</figcaption></figure><figure class=""><a href="img/image7.png" target="_blank" rel="noopener"><img src="img/image7.png" alt="예시2 · 상세/결제 단계에서 배송비 등장" loading="lazy"></a><figcaption>예시2 · 상세/결제 단계에서 배송비 등장</figcaption></figure></div>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>숙박 검색결과엔 세금 제외가, 결제 시 세금 포함 청구. 현장결제 리조트피는 아예 미표시</li>
+      <li>배송비 있는 상품인데 검색결과에 배송비 언급 없음 (조건부 무료배송도 해당 가능)</li>
+      <li>첫 화면에 가죽 소파 사진 + 패브릭 소파 가격 (§21① 기만행위 소지)</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>세금·필수 서비스료·현장결제 도시세까지 포함한 총금액을 검색결과에 표시</li>
+      <li>고정 배송·설치비는 첫 화면에 표시, 변동이면 "배송비 별도" 표시</li>
+      <li>공간이 부족하면 첫 화면엔 제외 항목만, 사유는 팝업·상세화면(스크롤 없이 보이게)</li>
+    </ul></div>
+  </div>
+  <details><summary>총금액에 넣는 것 / 안 넣어도 되는 것 · Q&amp;A</summary>
+    <div class="qa"><p>포함 대상</p><p>배송비, 설치비, 부가세 등 제세공과금, 해외직구 관세, 여행 봉사료·청소비·도시세·숙박세, 착불 배송비·조립비 등 현장결제 비용.</p></div>
+    <div class="qa"><p>제외 가능</p><p>소비자가 고른 특급배송비, 도서산간 추가배송비. 소비자 선택에 따라 달라져 일률 책정이 어려운 비용(정당한 사유, 첫 화면에 제외 항목·사유 고지 필요).</p></div>
+    <div class="qa"><p>멤버십·제휴카드 조건부 할인가만 첫 화면에 표시하면?</p><p>순차공개는 아니지만 기만 우려가 있으므로, 누구나 받는 가격을 기준으로 하거나 조건을 가격 옆에 명시할 것을 권고.</p></div>
+  </details>
+</article>
+
+<h2>오도형</h2>
+
+<article class="type" id="t21">
+  <header><h3>2.1 특정옵션의 사전선택</h3><span class="law">전자상거래법 §21조의2①2</span><span class="fine">과태료 ≤1천만 원</span></header>
+  <p>구매·가입 진행 중 다른 상품·서비스 청약 여부를 묻는 항목을 미리 '예'로 체크해 두는 행위.</p>
+  <div class="key"><b>핵심:</b> 추가 구매·가입 항목은 비워두거나 '안 함'을 기본값으로. 뒤에 확인 단계·결제 단계가 있어도 위반 가능.</div>
+  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class="wide"><a href="img/image8.png" target="_blank" rel="noopener"><img src="img/image8.png" alt="예시 · 메뉴 선택 화면" loading="lazy"></a><figcaption>예시 · 메뉴 선택 화면</figcaption></figure><figure class=""><a href="img/image9.png" target="_blank" rel="noopener"><img src="img/image9.png" alt="예시 · 다음 화면에서 '세트'가 미리 선택됨" loading="lazy"></a><figcaption>예시 · 다음 화면에서 '세트'가 미리 선택됨</figcaption></figure></div>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>키오스크·앱에서 치즈버거를 누르면 '단품' 대신 더 비싼 '세트'가 기본 선택</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>추가상품 옵션은 미선택 또는 '구매 안 함' 기본</li>
+      <li>옵션이 많으면 상품창을 분리해 초기부터 선택하게</li>
+    </ul></div>
+  </div>
+  <details><summary>적용 범위</summary>
+    <div class="qa"><p>해당 안 되는 경우</p><p>구매·가입 과정이 아닌 메인 화면 팝업의 개인정보·광고수신 동의, 이전 배송지·결제수단 같은 편의 목적 기본값. 단, 시각적으로 하나만 고를 수 있게 보이면 '잘못된 계층구조'가 될 수 있음.</p></div>
+  </details>
+</article>
+
+<article class="type" id="t22">
+  <header><h3>2.2 잘못된 계층구조</h3><span class="law">전자상거래법 §21조의2①3</span><span class="fine">과태료 ≤1천만 원</span></header>
+  <p>구매·가입·해지 선택지 사이에 크기·모양·색 차이를 현저하게 둬서, 하나만 고를 수 있거나 반드시 골라야 하는 것처럼 오인시키는 행위.</p>
+  <div class="key"><b>핵심:</b> 강조 자체는 가능. 다른 선택지가 <b>안 보이거나 없는 것처럼</b> 느껴질 정도면 위반. 흐린 채도·명도, 작은 글자·작은 터치영역, 찾기 어려운 위치 모두 문제.</div>
+  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class=""><a href="img/image10.png" target="_blank" rel="noopener"><img src="img/image10.png" alt="예시1 · '이용권 변경' 강조, '자동결제 해지'는 흐리고 작게" loading="lazy"></a><figcaption>예시1 · '이용권 변경' 강조, '자동결제 해지'는 흐리고 작게</figcaption></figure><figure class="tall"><a href="img/image11.png" target="_blank" rel="noopener"><img src="img/image11.png" alt="예시2 · '동의'와 '7일간 보지 않기'만, 거부 항목 없음" loading="lazy"></a><figcaption>예시2 · '동의'와 '7일간 보지 않기'만, 거부 항목 없음</figcaption></figure></div>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>해지 화면에서 '이용권 변경'은 크고 컬러, '자동결제 해지'는 무채색 작은 글씨</li>
+      <li>가격 변경 동의 팝업에 '동의'와 '7일간 보지 않기'만 있고 거부 항목 없음</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>대체 선택지와 해지 버튼을 비슷한 크기·색으로</li>
+      <li>동의와 거부 항목을 함께, 시각적으로 비슷하게</li>
+    </ul></div>
+  </div>
+  <details><summary>적용 범위</summary>
+    <div class="qa"><p>해당 안 되는 경우</p><p>구매·가입·해지와 무관한 단순 광고·정보 제공 화면.</p></div>
+  </details>
+</article>
+
+<article class="type" id="t23">
+  <header><h3>2.3 거짓 할인</h3><span class="law">전자상거래법 §21①1 · 표시광고법 §3①</span><span class="fine">과태료 ≤2천만 원</span></header>
+  <p>기준가를 부풀리거나 할인율을 과장해 싸 보이게 하는 행위. 제조사 정가·권장가라고 기준가로 당연히 인정되지는 않음.</p>
+  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class=""><a href="img/image12.png" target="_blank" rel="noopener"><img src="img/image12.png" alt="판매된 적 없는 기준가로 할인율 표시" loading="lazy"></a><figcaption>판매된 적 없는 기준가로 할인율 표시</figcaption></figure><figure class=""><a href="img/image13.png" target="_blank" rel="noopener"><img src="img/image13.png" alt="판매된 적 없는 기준가로 할인율 표시" loading="lazy"></a><figcaption>판매된 적 없는 기준가로 할인율 표시</figcaption></figure><figure class=""><a href="img/image14.png" target="_blank" rel="noopener"><img src="img/image14.png" alt="근거 없는 기준가 대비 71% 할인 표시" loading="lazy"></a><figcaption>근거 없는 기준가 대비 71% 할인 표시</figcaption></figure><figure class=""><a href="img/image15.png" target="_blank" rel="noopener"><img src="img/image15.png" alt="근거 없는 기준가 대비 할인 표시" loading="lazy"></a><figcaption>근거 없는 기준가 대비 할인 표시</figcaption></figure></div>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>행사 기간에 판매된 적 없는 가격으로 기준가를 올려 할인율 과장</li>
+      <li>'모바일 특가' 코너인데 웹 가격과 동일</li>
+      <li>시술별 20~50% 할인인데 "50% 할인"으로 단정 표시</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>실거래 가격을 기준가로, 근거(종전 거래가, 공식판매가, 시가) 설명</li>
+      <li>할인율은 사실대로, 범위면 범위로</li>
+    </ul></div>
+  </div>
+</article>
+
+<article class="type" id="t24">
+  <header><h3>2.4 거짓 추천</h3><span class="law">전자상거래법 §21①1 · 표시광고법 §3①</span><span class="fine">과태료 ≤2천만 원</span></header>
+  <p>불리한 후기를 이유 없이 지우거나 숨기고, 유리한 후기를 거짓으로 만드는 행위. 정렬 조작으로 불리한 후기를 밀어내는 것도 포함.</p>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>최신순·평점순 정렬처럼 보이지만 실제론 긍정 후기만 노출</li>
+      <li>빈 상자 발송으로 구매 이력을 만들어 거짓 후기 작성</li>
+      <li>직원 동원 배달 후기 작성, 주문수 부풀리기 (의뢰받은 대행사도 책임)</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>후기를 있는 그대로 노출, 노출 기준을 안내</li>
+      <li>대가 제공 후기는 그 사실을 명확히 고지</li>
+      <li>정보통신망법상 명예훼손 등 임시조치는 예외</li>
+    </ul></div>
+  </div>
+</article>
+
+<article class="type" id="t25">
+  <header><h3>2.5 유인 판매</h3><span class="law">전자상거래법 §21①1 · 표시광고법 §3①</span><span class="fine">과태료 ≤2천만 원</span></header>
+  <p>실제로 안 파는 '미끼상품'을 판매 중인 것처럼 광고해 유인하는 행위. 순간 품절 자체는 바로 위반이 아니지만 재고는 주기적으로 반영해야 함 (대법원 2010두24371: 5일간 품절 상품 광고 방치 위반 인정).</p>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>재고 없어 수개월 뒤 배송인데 판매 광고, 오픈마켓은 삭제 요구 무시</li>
+      <li>70만 원 운동화를 최저가 대표노출 악용해 "35만 원 1개 남음" 허위 표시</li>
+      <li>"A브랜드 7,900원" 배너 → 클릭하면 21,800원 상품만 있음</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>실시간 재고 반영 시스템, 품절은 사실대로 표시</li>
+      <li>실제 판매 상품만 광고</li>
+    </ul></div>
+  </div>
+</article>
+
+<article class="type" id="t26">
+  <header><h3>2.6 위장 광고</h3><span class="law">전자상거래법 §21①1 · 표시광고법 §3①</span><span class="fine">과태료 ≤2천만 원</span></header>
+  <p>광고를 후기·기사·연구결과 등 광고가 아닌 콘텐츠처럼 위장하는 행위. 현금, 무상 제공, 수익 공유, 미래·조건부 대가 모두 '경제적 이해관계'.</p>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>인플루언서에게 현금·제품 제공하고 광고 표시 없는 후기 게시 (뒷광고)</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>'광고', '협찬' 등 <b>한글</b> 문구로 쉽게 찾고 알아볼 수 있게 표시</li>
+      <li>상세 기준: 「추천·보증 심사지침 안내서」(’25.12.2.)</li>
+    </ul></div>
+  </div>
+</article>
+
+<article class="type" id="t27">
+  <header><h3>2.7 속임수 질문</h3><span class="law">전자상거래법 §21①1</span><span class="fine">과태료 ≤2천만 원</span></header>
+  <p>의도하지 않은 답을 하게 하거나 아주 주의해서 봐야만 뜻을 알 수 있게 묻는 행위.</p>
+  <div class="key"><b>핵심:</b> 한 질문 = 한 가지 뜻. 이중부정 금지. 두 가지 이상이면 질문과 선택지를 따로. 편의용 전체동의 버튼은 괜찮지만 개별 동의도 가능해야 함.</div>
+  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class="wide"><a href="img/image16.png" target="_blank" rel="noopener"><img src="img/image16.png" alt="예시1 · 멤버십 월회비 변경 동의를 구매 동의에 섞어 질문" loading="lazy"></a><figcaption>예시1 · 멤버십 월회비 변경 동의를 구매 동의에 섞어 질문</figcaption></figure><figure class=""><a href="img/image17.png" target="_blank" rel="noopener"><img src="img/image17.png" alt="예시2 · "받지 않겠습니다 [X]" 이중부정" loading="lazy"></a><figcaption>예시2 · "받지 않겠습니다 [X]" 이중부정</figcaption></figure></div>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>구매 버튼 자리에 "프리미엄 멤버십 업그레이드 동의" / "업그레이드 하지 않음"을 둬서 업그레이드해야 구매되는 것처럼 보이게</li>
+      <li>"마케팅 메시지를 받고 싶지 않습니다 [X]" → X를 누르면 수신 동의</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>쉬운 단어, 긍정문</li>
+      <li>구매와 멤버십 업그레이드는 별도 질문</li>
+    </ul></div>
+  </div>
+</article>
+
+<h2>방해형</h2>
+
+<article class="type" id="t31">
+  <header><h3>3.1 취소·탈퇴 등의 방해</h3><span class="law">전자상거래법 §21조의2①4</span><span class="fine">과태료 ≤1천만 원</span></header>
+  <p>가입·구매보다 취소·탈퇴·해지를 복잡하게 만들거나, 다른 방법으로만 하게 제한하는 행위. 보도자료에서 따로 짚은 유형입니다.</p>
+  <div class="key"><b>핵심:</b> 가입한 방법 그대로, 간단하게. 복잡성은 <b>클릭·메뉴·버튼 수(정량)</b>와 <b>진입 경로 찾기 난이도(정성)</b>를 종합 판단.</div>
+  <div class="shots steps"><p class="shots-t">예시1 · 반복 재확인 해지 흐름 (4단계)</p><figure class=""><a href="img/image18.png" target="_blank" rel="noopener"><img src="img/image18.png" alt="① 해지신청" loading="lazy"></a><figcaption>① 해지신청</figcaption></figure><figure class=""><a href="img/image19.png" target="_blank" rel="noopener"><img src="img/image19.png" alt="② 상실 혜택 안내" loading="lazy"></a><figcaption>② 상실 혜택 안내</figcaption></figure><figure class=""><a href="img/image20.png" target="_blank" rel="noopener"><img src="img/image20.png" alt="③ 의사 재확인" loading="lazy"></a><figcaption>③ 의사 재확인</figcaption></figure><figure class=""><a href="img/image21.png" target="_blank" rel="noopener"><img src="img/image21.png" alt="④ 해지 방법 선택" loading="lazy"></a><figcaption>④ 해지 방법 선택</figcaption></figure></div><div class="shots steps"><p class="shots-t">예시2 · 탈퇴 경로 숨기기 (첫 화면에서 4번 클릭)</p><figure class=""><a href="img/image22.png" target="_blank" rel="noopener"><img src="img/image22.png" alt="① '나의 글'에서 톱니바퀴" loading="lazy"></a><figcaption>① '나의 글'에서 톱니바퀴</figcaption></figure><figure class=""><a href="img/image23.png" target="_blank" rel="noopener"><img src="img/image23.png" alt="② '설정'" loading="lazy"></a><figcaption>② '설정'</figcaption></figure><figure class=""><a href="img/image24.png" target="_blank" rel="noopener"><img src="img/image24.png" alt="③ '계정'" loading="lazy"></a><figcaption>③ '계정'</figcaption></figure><figure class=""><a href="img/image25.png" target="_blank" rel="noopener"><img src="img/image25.png" alt="④ '탈퇴하기'" loading="lazy"></a><figcaption>④ '탈퇴하기'</figcaption></figure></div><div class="shots "><p class="shots-t">예시3 · 취소는 전화로만</p><figure class="wide"><a href="img/image26.png" target="_blank" rel="noopener"><img src="img/image26.png" alt="온라인 예약 화면" loading="lazy"></a><figcaption>온라인 예약 화면</figcaption></figure><figure class=""><a href="img/image27.png" target="_blank" rel="noopener"><img src="img/image27.png" alt="변경·취소·환불은 고객센터 전화만" loading="lazy"></a><figcaption>변경·취소·환불은 고객센터 전화만</figcaption></figure></div>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>해지 신청 → "더 즐겨보세요" → "조금 더 이용해 보시겠어요?" → "해지 신청하시겠습니까?" 반복 재확인</li>
+      <li>탈퇴까지 첫 화면에서 4번 이상 클릭, 경로 이름이 '설정'이라 찾기 어려움</li>
+      <li>'개인정보 수정', '보안설정' 안에 탈퇴 버튼 배치</li>
+      <li>온라인 예약인데 취소·환불은 고객센터 업무시간 전화로만 (게시판·1:1·챗봇 전용도 동일)</li>
+      <li>설문에 답해야만 다음 단계 진행</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>로그인 첫 화면 또는 한 번 클릭으로 가는 화면(마이페이지·계정관리)에 버튼</li>
+      <li>"회원 탈퇴", "멤버십 취소"처럼 직관적 명칭</li>
+      <li>해지 클릭 수 ≤ 가입 클릭 수</li>
+      <li>혜택 상실 반복 안내·재확인 단계 삭제</li>
+      <li>웹·앱 가입이면 같은 웹·앱에서 해지</li>
+    </ul></div>
+  </div>
+  <details><summary>정당한 사유로 인정될 수 있는 경우</summary>
+    <div class="qa"><p>절차가 더 길어도 되는 경우</p><p>다른 법령이 동의·확인을 요구할 때, 대금 정산이 필수일 때, 비회원 취소에 주문자 본인 확인이 필요할 때 등.</p></div>
+  </details>
+</article>
+
+<article class="type" id="t32">
+  <header><h3>3.2 숨겨진 정보</h3><span class="law">전자상거래법 §13② · §21①1</span><span class="fine">과태료 ≤2천만 원</span></header>
+  <p>구매 결정에 필요한 중요 정보(가격, 수량, 수수료, 배송료, 공급 시기, 할인 조건·제한)를 숨기거나 빼거나 작게 보여주는 행위.</p>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>멤버십 할인은 최초 1회뿐인데 비회원에게 모든 상품에 할인가 표시</li>
+      <li>"한 번 결제로 평생 무제한"인데 실제론 일부 기능만 무제한</li>
+      <li>연 3회 할인인데 매월 할인되는 것처럼 표시</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>조건·제한을 일반 소비자가 인식할 수 있게 고지</li>
+      <li>착오하기 쉬운 사항은 강조 표시</li>
+    </ul></div>
+  </div>
+</article>
+
+<article class="type" id="t33">
+  <header><h3>3.3 가격비교 방해</h3><span class="law">전자상거래법 §21①1</span><span class="fine">과태료 ≤2천만 원</span></header>
+  <p>같은 종류 상품끼리 크기·수량·묶음 단위를 달리 표시해 비교를 어렵게 하는 행위.</p>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>삼겹살을 '1팩'으로만 표시, 중량·단위가격 없음</li>
+      <li>롤휴지 롤 수, 롤 길이, 1m당 가격 미표시</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>단위가격 표시, 일관된 비교 기준</li>
+      <li>조건부 가격(특정 카드 등)은 조건을 명확히</li>
+      <li>지역별·품목별 배송·설치비는 따로 알기 쉽게</li>
+    </ul></div>
+  </div>
+</article>
+
+<h2>압박형</h2>
+
+<article class="type" id="t41">
+  <header><h3>4.1 반복간섭</h3><span class="law">전자상거래법 §21조의2①5 · 시행령 §27조의2</span><span class="fine">과태료 ≤1천만 원</span></header>
+  <p>이미 내린 선택을 바꾸라고 팝업 등으로 2회 이상 요구하는 행위. 구매·가입에 한정되지 않고 광고수신·개인정보 동의 재요구가 대표 사례. 화면을 가려 선택하지 않으면 이용이 어려운 수준이어야 하며, 단순 배너는 해당 안 됨.</p>
+  <div class="key"><b>핵심:</b> 번복 유도 팝업엔 <b>"<span class="num">7일</span>간 다시 보지 않기"</b> 등 최소 7일 거부 옵션. 선택하면 그 기간 안엔 다시 묻지 않기.</div>
+  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class=""><a href="img/image28.png" target="_blank" rel="noopener"><img src="img/image28.png" alt="예시1 · 탈퇴 의사 후에도 새 멤버십 체험 권유" loading="lazy"></a><figcaption>예시1 · 탈퇴 의사 후에도 새 멤버십 체험 권유</figcaption></figure><figure class=""><a href="img/image29.png" target="_blank" rel="noopener"><img src="img/image29.png" alt="예시2 · 인상 거부 다음날 동의 팝업 재노출" loading="lazy"></a><figcaption>예시2 · 인상 거부 다음날 동의 팝업 재노출</figcaption></figure></div>
+  <div class="cols">
+    <div class="col bad"><h5>위반 예시</h5><ul>
+      <li>멤버십 탈퇴 의사를 밝혔는데 별도 화면으로 새 멤버십 체험 계속 권유 (취소·탈퇴 방해와 중복 해당 가능)</li>
+      <li>가격 인상 거부 다음날 접속하자 동의 팝업 재노출</li>
+    </ul></div>
+    <div class="col good"><h5>이렇게</h5><ul>
+      <li>"7일간 다시 보지 않기" 제공, 선택 시 7일간 권유 중단</li>
+      <li>거절한 사용자에겐 팝업 대신 배너로 변경 가능 안내</li>
+    </ul></div>
+  </div>
+  <details><summary>Q&amp;A 3개</summary>
+    <div class="qa"><p>'닫기'나 '나중에 알림'을 누른 사람에게 다시 묻는 건?</p><p>선택을 미룬 것이므로 괜찮음. 단, 동의 항목만 있고 거부 항목이 없었다면 닫기를 실질적 거부로 보아 반복간섭이 될 수 있음.</p></div>
+    <div class="qa"><p>'7일간 보지 않기'를 안 넣었다면 영원히 다시 못 묻나?</p><p>처음부터 넣는 게 바람직하지만, 없었다면 거부 후 7일이 지나면 다시 물을 수 있음.</p></div>
+    <div class="qa"><p>'7일간 보지 않기'가 있으면 거부 버튼도 따로 필요한가?</p><p>법 문언상 없어도 됨. 다만 거부 버튼을 따로 두고, 거부 시 7일보다 더 길게 묻지 않는 것이 바람직.</p></div>
+  </details>
+</article>
+
+<h2 id="penalty">위반 시 제재</h2>
+<div class="tbl"><table>
+  <thead><tr><th>제재</th><th>내용</th><th>근거</th></tr></thead>
+  <tbody>
+    <tr><td>시정조치</td><td>위반 다크패턴에 대해 시정명령</td><td class="num">§32①</td></tr>
+    <tr><td>영업정지</td><td>시정명령 불이행 또는 시정만으로 피해 방지가 어려울 때, 1년 이내</td><td class="num">§32④</td></tr>
+    <tr><td>과징금</td><td>영업정지가 소비자 불편을 키울 경우 영업정지 대신 부과</td><td class="num">§34①</td></tr>
+    <tr><td>과태료 1천만 원 이하</td><td>숨은갱신(§13⑥), 순차공개·사전선택·계층구조·취소방해·반복간섭(§21조의2①)</td><td class="num">§45④</td></tr>
+    <tr><td>과태료 2천만 원 이하</td><td>거짓 할인, 몰래 장바구니 추가 등 §21①1~5 금지행위</td><td class="num">§45③</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="sources">출처 · 관련 기사</h2>
+<div class="tldr sources">
+  <h3>공식 자료</h3>
+  <ul>
+    <li><a href="https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=3&amp;key=12" target="_blank" rel="noopener">공정거래위원회 보도자료 게시판</a> · 2026. 10. 6. 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」 배포 (보도참고자료 + 별첨 원문)</li>
+    <li>근거 법령: <a href="https://www.law.go.kr/법령/전자상거래등에서의소비자보호에관한법률" target="_blank" rel="noopener">전자상거래 등에서의 소비자보호에 관한 법률</a> 제13조제6항, 제21조, 제21조의2 (국가법령정보센터)</li>
+  </ul>
+  <h3 style="margin-top:20px">언론 보도 (2026. 10. 6.)</h3>
+  <ul>
+    <li><a href="https://zdnet.co.kr/view/?no=20261006135621" target="_blank" rel="noopener">ZDNet Korea</a> · 공정위, '다크패턴' 가이드라인 배포…"회원탈퇴 버튼 찾기 쉽게 배치해야"</li>
+    <li><a href="https://biz.sbs.co.kr/article/20000338359" target="_blank" rel="noopener">SBS Biz</a> · '가입은 클릭 한 번, 해지는 미로'…공정위, 다크패턴 기준 구체화</li>
+    <li><a href="https://www.mt.co.kr/economy/2026/10/06/2026100609032173272" target="_blank" rel="noopener">머니투데이</a> · 회원 탈퇴 버튼 어디에?…공정위, '다크패턴 방지 가이드라인' 배포</li>
+    <li><a href="https://view.asiae.co.kr/article/2026100609092936679" target="_blank" rel="noopener">아시아경제</a> · "이런 UI·UX 쓰면 규정 위반"…공정위, 다크패턴 방지 통합 가이드라인 배포</li>
+    <li><a href="https://www.seoul.co.kr/news/economy/2026/10/06/20261006500113" target="_blank" rel="noopener">서울신문</a> · 공정위 "탈퇴 버튼 찾기 쉽게…배송비 미리 표기"…다크패턴 기준 마련</li>
+    <li><a href="https://www.ddaily.co.kr/page/view/2026100610552654853" target="_blank" rel="noopener">디지털데일리</a> · 공정위, 다크패턴 13개 유형 제시…"탈퇴 버튼 쉽게 접근해야"</li>
+    <li><a href="https://www.newspim.com/news/view/20261006000345" target="_blank" rel="noopener">뉴스핌</a> · 공정위, 다크패턴 가이드라인 배포…"탈퇴 버튼 숨기지 마라"</li>
+    <li><a href="https://www.itdaily.kr/news/articleView.html?idxno=242023" target="_blank" rel="noopener">아이티데일리</a> · 공정위 "탈퇴 버튼, 첫 화면·마이페이지에"…다크패턴 지침 통합</li>
+  </ul>
+</div>
+
+<footer>
+  이 페이지는 공정위 가이드라인을 개인이 읽기 쉽게 요약한 <b>비공식 자료</b>이며 법률 자문이 아닙니다. 실제 위반 여부는 법령과 「전자상거래 등에서의 소비자보호지침」, 공정위 판단이 우선합니다. 예시 이미지는 가이드라인 별첨에 실린 공정위 예시 화면입니다.<br>
+  원문 기준일 2026. 9. (배포 2026. 10. 6.) · 문의처: 공정거래위원회 소비자정책국 소비자거래정책과<br>
+  <a href="https://github.com/E-JIWON/dark-pattern-guide" target="_blank" rel="noopener">GitHub 저장소</a> · <a href="https://github.com/E-JIWON/dark-pattern-guide/blob/main/CHECKLIST.md" target="_blank" rel="noopener">CHECKLIST.md (프로젝트에 복사해 쓰기)</a>
+</footer>
+</main>
+</div>
+
+<script>
+const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+const pc=document.getElementById('pc'),pb=document.getElementById('pb');
+function upd(){const n=boxes.filter(b=>b.checked).length;pc.textContent=n+' / '+boxes.length+' 확인';pb.style.width=(n/boxes.length*100)+'%'}
+boxes.forEach(b=>b.addEventListener('change',upd));upd();
+document.getElementById('copymd').addEventListener('click',()=>{
+  const md=['## 다크패턴 점검 (공정위 가이드라인 2026.10)',''];
+  document.querySelectorAll('#checklist fieldset').forEach(f=>{
+    md.push('### '+f.querySelector('legend').textContent);
+    f.querySelectorAll('label').forEach(l=>md.push('- ['+(l.querySelector('input').checked?'x':' ')+'] '+l.textContent.trim()));
+    md.push('');
+  });
+  const text=md.join('\n'),msg=document.getElementById('copymsg'),ta=document.getElementById('mdout');
+  navigator.clipboard.writeText(text).then(()=>{msg.textContent='복사했어요';ta.hidden=true},()=>{ta.value=text;ta.hidden=false;ta.select();msg.textContent='아래 내용을 선택해 복사하세요'});
+});
+</script>
+
+</body>
+</html>

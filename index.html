@@ -2,9 +2,31 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>다크패턴 가이드라인 정리</title>
+<title>다크패턴 가이드라인 정리 (공정위 2026) | 13개 유형 · 예시 화면 · 점검표</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="공정거래위원회 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」(2026.10.6 배포) 13개 유형 요약과 서비스 점검표">
+<meta name="description" content="공정거래위원회 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」(2026.10.6 배포) 요약. 숨은갱신, 순차공개 가격책정, 취소·탈퇴 방해, 반복간섭 등 13개 유형별 문제 사례와 공정위 원문 예시 화면, 서비스 점검 체크리스트.">
+<meta name="keywords" content="다크패턴, 다크패턴 가이드라인, 공정위 다크패턴, 전자상거래법 제21조의2, 숨은갱신, 순차공개 가격책정, 회원탈퇴 버튼, 반복간섭, 다크패턴 체크리스트">
+<meta name="author" content="E-JIWON">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://e-jiwon.github.io/dark-pattern-guide/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#efe9df">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="다크패턴 가이드라인 정리">
+<meta property="og:title" content="다크패턴 가이드라인 정리 (공정위 2026)">
+<meta property="og:description" content="공정거래위원회 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」(2026.10.6 배포) 요약. 숨은갱신, 순차공개 가격책정, 취소·탈퇴 방해, 반복간섭 등 13개 유형별 문제 사례와 공정위 원문 예시 화면, 서비스 점검 체크리스트.">
+<meta property="og:url" content="https://e-jiwon.github.io/dark-pattern-guide/">
+<meta property="og:image" content="https://e-jiwon.github.io/dark-pattern-guide/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="다크패턴 가이드라인 정리 · 13개 유형별 문제 사례 · 공정위 원문 예시 화면 · 서비스 점검표">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="다크패턴 가이드라인 정리 (공정위 2026)">
+<meta name="twitter:description" content="공정거래위원회 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」(2026.10.6 배포) 요약. 숨은갱신, 순차공개 가격책정, 취소·탈퇴 방해, 반복간섭 등 13개 유형별 문제 사례와 공정위 원문 예시 화면, 서비스 점검 체크리스트.">
+<meta name="twitter:image" content="https://e-jiwon.github.io/dark-pattern-guide/og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인 정리", "description": "공정거래위원회 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」(2026.10.6 배포) 요약. 숨은갱신, 순차공개 가격책정, 취소·탈퇴 방해, 반복간섭 등 13개 유형별 문제 사례와 공정위 원문 예시 화면, 서비스 점검 체크리스트.", "inLanguage": "ko-KR", "url": "https://e-jiwon.github.io/dark-pattern-guide/", "image": "https://e-jiwon.github.io/dark-pattern-guide/og.png", "datePublished": "2026-10-07", "dateModified": "2026-10-07", "author": {"@type": "Person", "name": "E-JIWON", "url": "https://github.com/E-JIWON"}, "about": [{"@type": "Thing", "name": "다크패턴"}, {"@type": "Thing", "name": "전자상거래법"}], "isBasedOn": {"@type": "CreativeWork", "name": "다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인", "datePublished": "2026-10-06", "author": {"@type": "GovernmentOrganization", "name": "공정거래위원회", "url": "https://www.ftc.go.kr"}}, "keywords": "다크패턴, 다크패턴 가이드라인, 공정위, 전자상거래법, 숨은갱신, 순차공개 가격책정, 취소 탈퇴 방해, 반복간섭, UX, 체크리스트"}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
 
 <style>
@@ -140,6 +162,10 @@ details .qa p:last-child{color:var(--ink-2);margin:0}
 .shots a:hover{transform:translateY(-2px);box-shadow:var(--shadow-m)}
 .shots img{display:block;width:100%;height:auto;max-height:340px;object-fit:contain;border-radius:4px}
 .shots figure.tall img{max-height:420px}
+.shots-src{grid-column:1/-1;margin:2px 0 0;font-size:13px;line-height:1.6;color:var(--ink-4)}
+.shots-src a,.orig{color:var(--ink-3);text-underline-offset:3px}
+.orig{font-size:12.5px;white-space:nowrap}
+.orig:hover,.shots-src a:hover{color:var(--primary)}
 .shots figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3)}
 
 
@@ -230,7 +256,8 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   </ul>
 </section>
 
-<h2 id="map">4개 범주 · 13개 유형</h2>
+<h2 id="map">다크패턴이란? 4개 범주 · 13개 유형</h2>
+<p>다크패턴(Dark Pattern)은 웹사이트나 앱 화면에서 소비자의 착각·부주의를 교묘하게 유발해 비합리적인 소비를 유도하는 행위입니다. 자동결제 몰래 갱신, 결제 단계에서 늘어나는 가격, 찾기 어려운 탈퇴 버튼, 거절해도 계속 뜨는 팝업이 대표적입니다. 공정위는 이를 작동 방식에 따라 4개 범주, 13개 유형으로 나눴습니다.</p>
 <div class="map">
   <div class="cat"><strong>편취형</strong><small>알아채기 어렵게 조작해 예상 못 한 지출 유도</small>
     <a href="#t11">숨은갱신</a><a href="#t12">순차공개 가격책정</a></div>
@@ -290,9 +317,9 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>1.1 숨은갱신</h3><span class="law">전자상거래법 §13⑥</span><span class="fine">과태료 ≤1천만 원</span></header>
   <p>정기결제 금액이 오르거나 무료에서 유료로 바뀔 때, 따로 동의를 받지 않고 갱신·자동결제하는 행위.</p>
   <div class="key"><b>핵심:</b> 증액·전환일 전 <span class="num">30일</span> 이내에 <b>명시적 동의</b>를 받고, 해지 조건·방법·효과를 고지. 동의 없으면 결제가 안 되게 설계.</div>
-  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class="wide"><a href="img/full/image1.jpg" class="zoom"><img src="img/image1.png" alt="예시1 · 가격 인상: 6.15 인상 → 7.1 결제분부터 적용, 동의 기간 6.1~6.30" loading="lazy"></a><figcaption>예시1 · 가격 인상: 6.15 인상 → 7.1 결제분부터 적용, 동의 기간 6.1~6.30</figcaption></figure><figure class="wide"><a href="img/full/image2.jpg" class="zoom"><img src="img/image2.png" alt="예시2 · 신규 50% 할인 2개월 후 정가 전환" loading="lazy"></a><figcaption>예시2 · 신규 50% 할인 2개월 후 정가 전환</figcaption></figure><figure class=""><a href="img/full/image3.png" class="zoom"><img src="img/image3.png" alt="예시3 · "예, 확인하였습니다"만 강조, 거부 항목 없음" loading="lazy"></a><figcaption>예시3 · "예, 확인하였습니다"만 강조, 거부 항목 없음</figcaption></figure></div>
+  <div class="shots "><p class="shots-t">공정위 원문 예시 화면</p><figure class="wide"><a href="img/full/image1.jpg" class="zoom"><img src="img/image1.png" alt="예시1 · 가격 인상: 6.15 인상 → 7.1 결제분부터 적용, 동의 기간 6.1~6.30" width="617" height="144" loading="lazy"></a><figcaption><span class="cap">예시1 · 가격 인상: 6.15 인상 → 7.1 결제분부터 적용, 동의 기간 6.1~6.30</span> <a class="orig" href="img/full/image1.jpg" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class="wide"><a href="img/full/image2.jpg" class="zoom"><img src="img/image2.png" alt="예시2 · 신규 50% 할인 2개월 후 정가 전환" width="628" height="162" loading="lazy"></a><figcaption><span class="cap">예시2 · 신규 50% 할인 2개월 후 정가 전환</span> <a class="orig" href="img/full/image2.jpg" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image3.png" class="zoom"><img src="img/image3.png" alt="예시3 · &quot;예, 확인하였습니다&quot;만 강조, 거부 항목 없음" width="333" height="375" loading="lazy"></a><figcaption><span class="cap">예시3 · "예, 확인하였습니다"만 강조, 거부 항목 없음</span> <a class="orig" href="img/full/image3.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><p class="shots-src">출처: <a href="https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=3&amp;key=12" target="_blank" rel="noopener">공정거래위원회</a> 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」 별첨 1.1 숨은갱신 예시 (2026. 10. 6. 보도자료)</p></div>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>"기간 내 거부하지 않으면 동의로 간주" 이메일만 보내고 자동 인상 결제</li>
       <li>신규 할인·무료 프로모션 약관에 "종료 후 정가 자동결제"만 넣고 별도 동의 없음</li>
       <li>프로모션이 30일 이내라 가입일이 동의 기간에 걸쳐도, 가입과 동시에 일괄 동의 받기</li>
@@ -315,9 +342,9 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>1.2 순차공개 가격책정</h3><span class="law">전자상거래법 §21조의2①1</span><span class="fine">과태료 ≤1천만 원</span></header>
   <p>첫 화면엔 싸게 보여주고, 구매가 진행될수록 필수 추가금을 하나씩 공개해 최종가를 청구하는 행위. 실제 구매로 이어지지 않은 단순 표시·광고만으로도 해당할 수 있음.</p>
   <div class="key"><b>핵심:</b> '첫 화면'은 가격을 처음 보는 모든 화면(검색결과, 카테고리 목록, 메인, 배너). 여기서부터 <b>총금액</b>(지불을 거부할 수 없는 모든 비용) 표시.</div>
-  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class=""><a href="img/full/image4.png" class="zoom"><img src="img/image4.png" alt="예시1 · 첫 화면: 세금 제외가 442,446원 표시" loading="lazy"></a><figcaption>예시1 · 첫 화면: 세금 제외가 442,446원 표시</figcaption></figure><figure class=""><a href="img/full/image5.png" class="zoom"><img src="img/image5.png" alt="예시1 · 결제 화면: 세금 포함 521,909원 + 리조트피 별도" loading="lazy"></a><figcaption>예시1 · 결제 화면: 세금 포함 521,909원 + 리조트피 별도</figcaption></figure><figure class=""><a href="img/full/image6.jpg" class="zoom"><img src="img/image6.png" alt="예시2 · 검색결과에 배송비 표시 없음" loading="lazy"></a><figcaption>예시2 · 검색결과에 배송비 표시 없음</figcaption></figure><figure class=""><a href="img/full/image7.png" class="zoom"><img src="img/image7.png" alt="예시2 · 상세/결제 단계에서 배송비 등장" loading="lazy"></a><figcaption>예시2 · 상세/결제 단계에서 배송비 등장</figcaption></figure></div>
+  <div class="shots "><p class="shots-t">공정위 원문 예시 화면</p><figure class=""><a href="img/full/image4.png" class="zoom"><img src="img/image4.png" alt="예시1 · 첫 화면: 세금 제외가 442,446원 표시" width="569" height="364" loading="lazy"></a><figcaption><span class="cap">예시1 · 첫 화면: 세금 제외가 442,446원 표시</span> <a class="orig" href="img/full/image4.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image5.png" class="zoom"><img src="img/image5.png" alt="예시1 · 결제 화면: 세금 포함 521,909원 + 리조트피 별도" width="606" height="412" loading="lazy"></a><figcaption><span class="cap">예시1 · 결제 화면: 세금 포함 521,909원 + 리조트피 별도</span> <a class="orig" href="img/full/image5.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image6.jpg" class="zoom"><img src="img/image6.png" alt="예시2 · 검색결과에 배송비 표시 없음" width="471" height="303" loading="lazy"></a><figcaption><span class="cap">예시2 · 검색결과에 배송비 표시 없음</span> <a class="orig" href="img/full/image6.jpg" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image7.png" class="zoom"><img src="img/image7.png" alt="예시2 · 상세/결제 단계에서 배송비 등장" width="555" height="453" loading="lazy"></a><figcaption><span class="cap">예시2 · 상세/결제 단계에서 배송비 등장</span> <a class="orig" href="img/full/image7.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><p class="shots-src">출처: <a href="https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=3&amp;key=12" target="_blank" rel="noopener">공정거래위원회</a> 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」 별첨 1.2 순차공개 가격책정 예시 (2026. 10. 6. 보도자료)</p></div>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>숙박 검색결과엔 세금 제외가, 결제 시 세금 포함 청구. 현장결제 리조트피는 아예 미표시</li>
       <li>배송비 있는 상품인데 검색결과에 배송비 언급 없음 (조건부 무료배송도 해당 가능)</li>
       <li>첫 화면에 가죽 소파 사진 + 패브릭 소파 가격 (§21① 기만행위 소지)</li>
@@ -341,9 +368,9 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>2.1 특정옵션의 사전선택</h3><span class="law">전자상거래법 §21조의2①2</span><span class="fine">과태료 ≤1천만 원</span></header>
   <p>구매·가입 진행 중 다른 상품·서비스 청약 여부를 묻는 항목을 미리 '예'로 체크해 두는 행위.</p>
   <div class="key"><b>핵심:</b> 추가 구매·가입 항목은 비워두거나 '안 함'을 기본값으로. 뒤에 확인 단계·결제 단계가 있어도 위반 가능.</div>
-  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class="wide"><a href="img/full/image8.jpg" class="zoom"><img src="img/image8.png" alt="예시 · 메뉴 선택 화면" loading="lazy"></a><figcaption>예시 · 메뉴 선택 화면</figcaption></figure><figure class=""><a href="img/full/image9.png" class="zoom"><img src="img/image9.png" alt="예시 · 다음 화면에서 '세트'가 미리 선택됨" loading="lazy"></a><figcaption>예시 · 다음 화면에서 '세트'가 미리 선택됨</figcaption></figure></div>
+  <div class="shots "><p class="shots-t">공정위 원문 예시 화면</p><figure class="wide"><a href="img/full/image8.jpg" class="zoom"><img src="img/image8.png" alt="예시 · 메뉴 선택 화면" width="900" height="523" loading="lazy"></a><figcaption><span class="cap">예시 · 메뉴 선택 화면</span> <a class="orig" href="img/full/image8.jpg" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image9.png" class="zoom"><img src="img/image9.png" alt="예시 · 다음 화면에서 '세트'가 미리 선택됨" width="439" height="514" loading="lazy"></a><figcaption><span class="cap">예시 · 다음 화면에서 '세트'가 미리 선택됨</span> <a class="orig" href="img/full/image9.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><p class="shots-src">출처: <a href="https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=3&amp;key=12" target="_blank" rel="noopener">공정거래위원회</a> 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」 별첨 2.1 특정옵션의 사전선택 예시 (2026. 10. 6. 보도자료)</p></div>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>키오스크·앱에서 치즈버거를 누르면 '단품' 대신 더 비싼 '세트'가 기본 선택</li>
     </ul></div>
     <div class="col good"><h5>이렇게</h5><ul>
@@ -360,9 +387,9 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>2.2 잘못된 계층구조</h3><span class="law">전자상거래법 §21조의2①3</span><span class="fine">과태료 ≤1천만 원</span></header>
   <p>구매·가입·해지 선택지 사이에 크기·모양·색 차이를 현저하게 둬서, 하나만 고를 수 있거나 반드시 골라야 하는 것처럼 오인시키는 행위.</p>
   <div class="key"><b>핵심:</b> 강조 자체는 가능. 다른 선택지가 <b>안 보이거나 없는 것처럼</b> 느껴질 정도면 위반. 흐린 채도·명도, 작은 글자·작은 터치영역, 찾기 어려운 위치 모두 문제.</div>
-  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class=""><a href="img/full/image10.png" class="zoom"><img src="img/image10.png" alt="예시1 · '이용권 변경' 강조, '자동결제 해지'는 흐리고 작게" loading="lazy"></a><figcaption>예시1 · '이용권 변경' 강조, '자동결제 해지'는 흐리고 작게</figcaption></figure><figure class="tall"><a href="img/full/image11.png" class="zoom"><img src="img/image11.png" alt="예시2 · '동의'와 '7일간 보지 않기'만, 거부 항목 없음" loading="lazy"></a><figcaption>예시2 · '동의'와 '7일간 보지 않기'만, 거부 항목 없음</figcaption></figure></div>
+  <div class="shots "><p class="shots-t">공정위 원문 예시 화면</p><figure class=""><a href="img/full/image10.png" class="zoom"><img src="img/image10.png" alt="예시1 · '이용권 변경' 강조, '자동결제 해지'는 흐리고 작게" width="401" height="229" loading="lazy"></a><figcaption><span class="cap">예시1 · '이용권 변경' 강조, '자동결제 해지'는 흐리고 작게</span> <a class="orig" href="img/full/image10.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class="tall"><a href="img/full/image11.png" class="zoom"><img src="img/image11.png" alt="예시2 · '동의'와 '7일간 보지 않기'만, 거부 항목 없음" width="443" height="895" loading="lazy"></a><figcaption><span class="cap">예시2 · '동의'와 '7일간 보지 않기'만, 거부 항목 없음</span> <a class="orig" href="img/full/image11.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><p class="shots-src">출처: <a href="https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=3&amp;key=12" target="_blank" rel="noopener">공정거래위원회</a> 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」 별첨 2.2 잘못된 계층구조 예시 (2026. 10. 6. 보도자료)</p></div>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>해지 화면에서 '이용권 변경'은 크고 컬러, '자동결제 해지'는 무채색 작은 글씨</li>
       <li>가격 변경 동의 팝업에 '동의'와 '7일간 보지 않기'만 있고 거부 항목 없음</li>
     </ul></div>
@@ -379,9 +406,9 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
 <article class="type" id="t23">
   <header><h3>2.3 거짓 할인</h3><span class="law">전자상거래법 §21①1 · 표시광고법 §3①</span><span class="fine">과태료 ≤2천만 원</span></header>
   <p>기준가를 부풀리거나 할인율을 과장해 싸 보이게 하는 행위. 제조사 정가·권장가라고 기준가로 당연히 인정되지는 않음.</p>
-  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class=""><a href="img/full/image12.png" class="zoom"><img src="img/image12.png" alt="판매된 적 없는 기준가로 할인율 표시" loading="lazy"></a><figcaption>판매된 적 없는 기준가로 할인율 표시</figcaption></figure><figure class=""><a href="img/full/image13.png" class="zoom"><img src="img/image13.png" alt="판매된 적 없는 기준가로 할인율 표시" loading="lazy"></a><figcaption>판매된 적 없는 기준가로 할인율 표시</figcaption></figure><figure class=""><a href="img/full/image14.png" class="zoom"><img src="img/image14.png" alt="근거 없는 기준가 대비 71% 할인 표시" loading="lazy"></a><figcaption>근거 없는 기준가 대비 71% 할인 표시</figcaption></figure><figure class=""><a href="img/full/image15.png" class="zoom"><img src="img/image15.png" alt="근거 없는 기준가 대비 할인 표시" loading="lazy"></a><figcaption>근거 없는 기준가 대비 할인 표시</figcaption></figure></div>
+  <div class="shots "><p class="shots-t">공정위 원문 예시 화면</p><figure class=""><a href="img/full/image12.png" class="zoom"><img src="img/image12.png" alt="판매된 적 없는 기준가로 할인율 표시" width="292" height="73" loading="lazy"></a><figcaption><span class="cap">판매된 적 없는 기준가로 할인율 표시</span> <a class="orig" href="img/full/image12.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image13.png" class="zoom"><img src="img/image13.png" alt="판매된 적 없는 기준가로 할인율 표시" width="302" height="71" loading="lazy"></a><figcaption><span class="cap">판매된 적 없는 기준가로 할인율 표시</span> <a class="orig" href="img/full/image13.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image14.png" class="zoom"><img src="img/image14.png" alt="근거 없는 기준가 대비 71% 할인 표시" width="478" height="212" loading="lazy"></a><figcaption><span class="cap">근거 없는 기준가 대비 71% 할인 표시</span> <a class="orig" href="img/full/image14.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image15.png" class="zoom"><img src="img/image15.png" alt="근거 없는 기준가 대비 할인 표시" width="517" height="227" loading="lazy"></a><figcaption><span class="cap">근거 없는 기준가 대비 할인 표시</span> <a class="orig" href="img/full/image15.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><p class="shots-src">출처: <a href="https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=3&amp;key=12" target="_blank" rel="noopener">공정거래위원회</a> 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」 별첨 2.3 거짓 할인 예시 (2026. 10. 6. 보도자료)</p></div>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>행사 기간에 판매된 적 없는 가격으로 기준가를 올려 할인율 과장</li>
       <li>'모바일 특가' 코너인데 웹 가격과 동일</li>
       <li>시술별 20~50% 할인인데 "50% 할인"으로 단정 표시</li>
@@ -397,7 +424,7 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>2.4 거짓 추천</h3><span class="law">전자상거래법 §21①1 · 표시광고법 §3①</span><span class="fine">과태료 ≤2천만 원</span></header>
   <p>불리한 후기를 이유 없이 지우거나 숨기고, 유리한 후기를 거짓으로 만드는 행위. 정렬 조작으로 불리한 후기를 밀어내는 것도 포함.</p>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>최신순·평점순 정렬처럼 보이지만 실제론 긍정 후기만 노출</li>
       <li>빈 상자 발송으로 구매 이력을 만들어 거짓 후기 작성</li>
       <li>직원 동원 배달 후기 작성, 주문수 부풀리기 (의뢰받은 대행사도 책임)</li>
@@ -414,7 +441,7 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>2.5 유인 판매</h3><span class="law">전자상거래법 §21①1 · 표시광고법 §3①</span><span class="fine">과태료 ≤2천만 원</span></header>
   <p>실제로 안 파는 '미끼상품'을 판매 중인 것처럼 광고해 유인하는 행위. 순간 품절 자체는 바로 위반이 아니지만 재고는 주기적으로 반영해야 함 (대법원 2010두24371: 5일간 품절 상품 광고 방치 위반 인정).</p>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>재고 없어 수개월 뒤 배송인데 판매 광고, 오픈마켓은 삭제 요구 무시</li>
       <li>70만 원 운동화를 최저가 대표노출 악용해 "35만 원 1개 남음" 허위 표시</li>
       <li>"A브랜드 7,900원" 배너 → 클릭하면 21,800원 상품만 있음</li>
@@ -430,7 +457,7 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>2.6 위장 광고</h3><span class="law">전자상거래법 §21①1 · 표시광고법 §3①</span><span class="fine">과태료 ≤2천만 원</span></header>
   <p>광고를 후기·기사·연구결과 등 광고가 아닌 콘텐츠처럼 위장하는 행위. 현금, 무상 제공, 수익 공유, 미래·조건부 대가 모두 '경제적 이해관계'.</p>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>인플루언서에게 현금·제품 제공하고 광고 표시 없는 후기 게시 (뒷광고)</li>
     </ul></div>
     <div class="col good"><h5>이렇게</h5><ul>
@@ -444,9 +471,9 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>2.7 속임수 질문</h3><span class="law">전자상거래법 §21①1</span><span class="fine">과태료 ≤2천만 원</span></header>
   <p>의도하지 않은 답을 하게 하거나 아주 주의해서 봐야만 뜻을 알 수 있게 묻는 행위.</p>
   <div class="key"><b>핵심:</b> 한 질문 = 한 가지 뜻. 이중부정 금지. 두 가지 이상이면 질문과 선택지를 따로. 편의용 전체동의 버튼은 괜찮지만 개별 동의도 가능해야 함.</div>
-  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class="wide"><a href="img/full/image16.png" class="zoom"><img src="img/image16.png" alt="예시1 · 멤버십 월회비 변경 동의를 구매 동의에 섞어 질문" loading="lazy"></a><figcaption>예시1 · 멤버십 월회비 변경 동의를 구매 동의에 섞어 질문</figcaption></figure><figure class=""><a href="img/full/image17.png" class="zoom"><img src="img/image17.png" alt="예시2 · "받지 않겠습니다 [X]" 이중부정" loading="lazy"></a><figcaption>예시2 · "받지 않겠습니다 [X]" 이중부정</figcaption></figure></div>
+  <div class="shots "><p class="shots-t">공정위 원문 예시 화면</p><figure class="wide"><a href="img/full/image16.png" class="zoom"><img src="img/image16.png" alt="예시1 · 멤버십 월회비 변경 동의를 구매 동의에 섞어 질문" width="900" height="552" loading="lazy"></a><figcaption><span class="cap">예시1 · 멤버십 월회비 변경 동의를 구매 동의에 섞어 질문</span> <a class="orig" href="img/full/image16.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image17.png" class="zoom"><img src="img/image17.png" alt="예시2 · &quot;받지 않겠습니다 [X]&quot; 이중부정" width="236" height="109" loading="lazy"></a><figcaption><span class="cap">예시2 · "받지 않겠습니다 [X]" 이중부정</span> <a class="orig" href="img/full/image17.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><p class="shots-src">출처: <a href="https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=3&amp;key=12" target="_blank" rel="noopener">공정거래위원회</a> 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」 별첨 2.7 속임수 질문 예시 (2026. 10. 6. 보도자료)</p></div>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>구매 버튼 자리에 "프리미엄 멤버십 업그레이드 동의" / "업그레이드 하지 않음"을 둬서 업그레이드해야 구매되는 것처럼 보이게</li>
       <li>"마케팅 메시지를 받고 싶지 않습니다 [X]" → X를 누르면 수신 동의</li>
     </ul></div>
@@ -463,9 +490,9 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>3.1 취소·탈퇴 등의 방해</h3><span class="law">전자상거래법 §21조의2①4</span><span class="fine">과태료 ≤1천만 원</span></header>
   <p>가입·구매보다 취소·탈퇴·해지를 복잡하게 만들거나, 다른 방법으로만 하게 제한하는 행위. 보도자료에서 따로 짚은 유형입니다.</p>
   <div class="key"><b>핵심:</b> 가입한 방법 그대로, 간단하게. 복잡성은 <b>클릭·메뉴·버튼 수(정량)</b>와 <b>진입 경로 찾기 난이도(정성)</b>를 종합 판단.</div>
-  <div class="shots steps"><p class="shots-t">예시1 · 반복 재확인 해지 흐름 (4단계)</p><figure class=""><a href="img/full/image18.png" class="zoom"><img src="img/image18.png" alt="① 해지신청" loading="lazy"></a><figcaption>① 해지신청</figcaption></figure><figure class=""><a href="img/full/image19.png" class="zoom"><img src="img/image19.png" alt="② 상실 혜택 안내" loading="lazy"></a><figcaption>② 상실 혜택 안내</figcaption></figure><figure class=""><a href="img/full/image20.png" class="zoom"><img src="img/image20.png" alt="③ 의사 재확인" loading="lazy"></a><figcaption>③ 의사 재확인</figcaption></figure><figure class=""><a href="img/full/image21.png" class="zoom"><img src="img/image21.png" alt="④ 해지 방법 선택" loading="lazy"></a><figcaption>④ 해지 방법 선택</figcaption></figure></div><div class="shots steps"><p class="shots-t">예시2 · 탈퇴 경로 숨기기 (첫 화면에서 4번 클릭)</p><figure class=""><a href="img/full/image22.png" class="zoom"><img src="img/image22.png" alt="① '나의 글'에서 톱니바퀴" loading="lazy"></a><figcaption>① '나의 글'에서 톱니바퀴</figcaption></figure><figure class=""><a href="img/full/image23.png" class="zoom"><img src="img/image23.png" alt="② '설정'" loading="lazy"></a><figcaption>② '설정'</figcaption></figure><figure class=""><a href="img/full/image24.png" class="zoom"><img src="img/image24.png" alt="③ '계정'" loading="lazy"></a><figcaption>③ '계정'</figcaption></figure><figure class=""><a href="img/full/image25.png" class="zoom"><img src="img/image25.png" alt="④ '탈퇴하기'" loading="lazy"></a><figcaption>④ '탈퇴하기'</figcaption></figure></div><div class="shots "><p class="shots-t">예시3 · 취소는 전화로만</p><figure class="wide"><a href="img/full/image26.png" class="zoom"><img src="img/image26.png" alt="온라인 예약 화면" loading="lazy"></a><figcaption>온라인 예약 화면</figcaption></figure><figure class=""><a href="img/full/image27.png" class="zoom"><img src="img/image27.png" alt="변경·취소·환불은 고객센터 전화만" loading="lazy"></a><figcaption>변경·취소·환불은 고객센터 전화만</figcaption></figure></div>
+  <div class="shots steps"><p class="shots-t">공정위 원문 예시 화면 · 예시1 · 반복 재확인 해지 흐름 (4단계)</p><figure class=""><a href="img/full/image18.png" class="zoom"><img src="img/image18.png" alt="① 해지신청" width="150" height="303" loading="lazy"></a><figcaption><span class="cap">① 해지신청</span> <a class="orig" href="img/full/image18.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image19.png" class="zoom"><img src="img/image19.png" alt="② 상실 혜택 안내" width="143" height="304" loading="lazy"></a><figcaption><span class="cap">② 상실 혜택 안내</span> <a class="orig" href="img/full/image19.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image20.png" class="zoom"><img src="img/image20.png" alt="③ 의사 재확인" width="151" height="305" loading="lazy"></a><figcaption><span class="cap">③ 의사 재확인</span> <a class="orig" href="img/full/image20.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image21.png" class="zoom"><img src="img/image21.png" alt="④ 해지 방법 선택" width="152" height="307" loading="lazy"></a><figcaption><span class="cap">④ 해지 방법 선택</span> <a class="orig" href="img/full/image21.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><p class="shots-src">출처: <a href="https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=3&amp;key=12" target="_blank" rel="noopener">공정거래위원회</a> 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」 별첨 3.1 취소·탈퇴 등의 방해 예시 (2026. 10. 6. 보도자료)</p></div><div class="shots steps"><p class="shots-t">공정위 원문 예시 화면 · 예시2 · 탈퇴 경로 숨기기 (첫 화면에서 4번 클릭)</p><figure class=""><a href="img/full/image22.png" class="zoom"><img src="img/image22.png" alt="① '나의 글'에서 톱니바퀴" width="414" height="900" loading="lazy"></a><figcaption><span class="cap">① '나의 글'에서 톱니바퀴</span> <a class="orig" href="img/full/image22.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image23.png" class="zoom"><img src="img/image23.png" alt="② '설정'" width="414" height="900" loading="lazy"></a><figcaption><span class="cap">② '설정'</span> <a class="orig" href="img/full/image23.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image24.png" class="zoom"><img src="img/image24.png" alt="③ '계정'" width="414" height="900" loading="lazy"></a><figcaption><span class="cap">③ '계정'</span> <a class="orig" href="img/full/image24.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image25.png" class="zoom"><img src="img/image25.png" alt="④ '탈퇴하기'" width="414" height="900" loading="lazy"></a><figcaption><span class="cap">④ '탈퇴하기'</span> <a class="orig" href="img/full/image25.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><p class="shots-src">출처: <a href="https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=3&amp;key=12" target="_blank" rel="noopener">공정거래위원회</a> 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」 별첨 3.1 취소·탈퇴 등의 방해 예시 (2026. 10. 6. 보도자료)</p></div><div class="shots "><p class="shots-t">공정위 원문 예시 화면 · 예시3 · 취소는 전화로만</p><figure class="wide"><a href="img/full/image26.png" class="zoom"><img src="img/image26.png" alt="온라인 예약 화면" width="900" height="271" loading="lazy"></a><figcaption><span class="cap">온라인 예약 화면</span> <a class="orig" href="img/full/image26.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image27.png" class="zoom"><img src="img/image27.png" alt="변경·취소·환불은 고객센터 전화만" width="659" height="218" loading="lazy"></a><figcaption><span class="cap">변경·취소·환불은 고객센터 전화만</span> <a class="orig" href="img/full/image27.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><p class="shots-src">출처: <a href="https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=3&amp;key=12" target="_blank" rel="noopener">공정거래위원회</a> 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」 별첨 3.1 취소·탈퇴 등의 방해 예시 (2026. 10. 6. 보도자료)</p></div>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>해지 신청 → "더 즐겨보세요" → "조금 더 이용해 보시겠어요?" → "해지 신청하시겠습니까?" 반복 재확인</li>
       <li>탈퇴까지 첫 화면에서 4번 이상 클릭, 경로 이름이 '설정'이라 찾기 어려움</li>
       <li>'개인정보 수정', '보안설정' 안에 탈퇴 버튼 배치</li>
@@ -489,7 +516,7 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>3.2 숨겨진 정보</h3><span class="law">전자상거래법 §13② · §21①1</span><span class="fine">과태료 ≤2천만 원</span></header>
   <p>구매 결정에 필요한 중요 정보(가격, 수량, 수수료, 배송료, 공급 시기, 할인 조건·제한)를 숨기거나 빼거나 작게 보여주는 행위.</p>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>멤버십 할인은 최초 1회뿐인데 비회원에게 모든 상품에 할인가 표시</li>
       <li>"한 번 결제로 평생 무제한"인데 실제론 일부 기능만 무제한</li>
       <li>연 3회 할인인데 매월 할인되는 것처럼 표시</li>
@@ -505,7 +532,7 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>3.3 가격비교 방해</h3><span class="law">전자상거래법 §21①1</span><span class="fine">과태료 ≤2천만 원</span></header>
   <p>같은 종류 상품끼리 크기·수량·묶음 단위를 달리 표시해 비교를 어렵게 하는 행위.</p>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>삼겹살을 '1팩'으로만 표시, 중량·단위가격 없음</li>
       <li>롤휴지 롤 수, 롤 길이, 1m당 가격 미표시</li>
     </ul></div>
@@ -523,9 +550,9 @@ footer{margin-top:64px;color:var(--ink-3);font-size:14px;line-height:1.75;border
   <header><h3>4.1 반복간섭</h3><span class="law">전자상거래법 §21조의2①5 · 시행령 §27조의2</span><span class="fine">과태료 ≤1천만 원</span></header>
   <p>이미 내린 선택을 바꾸라고 팝업 등으로 2회 이상 요구하는 행위. 구매·가입에 한정되지 않고 광고수신·개인정보 동의 재요구가 대표 사례. 화면을 가려 선택하지 않으면 이용이 어려운 수준이어야 하며, 단순 배너는 해당 안 됨.</p>
   <div class="key"><b>핵심:</b> 번복 유도 팝업엔 <b>"<span class="num">7일</span>간 다시 보지 않기"</b> 등 최소 7일 거부 옵션. 선택하면 그 기간 안엔 다시 묻지 않기.</div>
-  <div class="shots "><p class="shots-t">원문 예시 화면</p><figure class=""><a href="img/full/image28.png" class="zoom"><img src="img/image28.png" alt="예시1 · 탈퇴 의사 후에도 새 멤버십 체험 권유" loading="lazy"></a><figcaption>예시1 · 탈퇴 의사 후에도 새 멤버십 체험 권유</figcaption></figure><figure class=""><a href="img/full/image29.png" class="zoom"><img src="img/image29.png" alt="예시2 · 인상 거부 다음날 동의 팝업 재노출" loading="lazy"></a><figcaption>예시2 · 인상 거부 다음날 동의 팝업 재노출</figcaption></figure></div>
+  <div class="shots "><p class="shots-t">공정위 원문 예시 화면</p><figure class=""><a href="img/full/image28.png" class="zoom"><img src="img/image28.png" alt="예시1 · 탈퇴 의사 후에도 새 멤버십 체험 권유" width="269" height="424" loading="lazy"></a><figcaption><span class="cap">예시1 · 탈퇴 의사 후에도 새 멤버십 체험 권유</span> <a class="orig" href="img/full/image28.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><figure class=""><a href="img/full/image29.png" class="zoom"><img src="img/image29.png" alt="예시2 · 인상 거부 다음날 동의 팝업 재노출" width="214" height="276" loading="lazy"></a><figcaption><span class="cap">예시2 · 인상 거부 다음날 동의 팝업 재노출</span> <a class="orig" href="img/full/image29.png" target="_blank" rel="noopener">원본 이미지</a></figcaption></figure><p class="shots-src">출처: <a href="https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=3&amp;key=12" target="_blank" rel="noopener">공정거래위원회</a> 「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」 별첨 4.1 반복간섭 예시 (2026. 10. 6. 보도자료)</p></div>
   <div class="cols">
-    <div class="col bad"><h5>위반 예시</h5><ul>
+    <div class="col bad"><h5>문제 사례</h5><ul>
       <li>멤버십 탈퇴 의사를 밝혔는데 별도 화면으로 새 멤버십 체험 계속 권유 (취소·탈퇴 방해와 중복 해당 가능)</li>
       <li>가격 인상 거부 다음날 접속하자 동의 팝업 재노출</li>
     </ul></div>
@@ -594,8 +621,8 @@ boxes.forEach(b=>b.addEventListener('change',upd));upd();
 
 const zs=[...document.querySelectorAll('a.zoom')],lb=document.getElementById('lb'),lbi=document.getElementById('lbi'),lbc=document.getElementById('lbc'),lbn=document.getElementById('lbn');
 let cur=0;
-function show(i){cur=(i+zs.length)%zs.length;const a=zs[cur],cap=a.parentElement.querySelector('figcaption');
-  lbi.removeAttribute('style');lbi.src=a.getAttribute('href');lbi.alt=a.querySelector('img').alt;lbc.textContent=cap?cap.textContent:'';lbn.textContent=(cur+1)+' / '+zs.length;}
+function show(i){cur=(i+zs.length)%zs.length;const a=zs[cur],cap=a.parentElement.querySelector('.cap');
+  lbi.removeAttribute('style');lbi.src=a.getAttribute('href');lbi.alt=a.querySelector('img').alt;lbc.textContent=(cap?cap.textContent+' · ':'')+'출처: 공정거래위원회 다크패턴 가이드라인 별첨';lbn.textContent=(cur+1)+' / '+zs.length;}
 lbi.addEventListener('load',()=>{const w=lbi.naturalWidth;if(w&&w<480)lbi.style.width=Math.min(w*2,window.innerWidth*.9)+'px';});
 zs.forEach((a,i)=>a.addEventListener('click',e=>{e.preventDefault();show(i);lb.showModal();}));
 document.getElementById('lbx').onclick=()=>lb.close();

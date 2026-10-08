@@ -6,6 +6,8 @@
 
 **👉 웹에서 보기: https://e-jiwon.github.io/dark-pattern-guide/**
 
+<a href="https://e-jiwon.github.io/dark-pattern-guide/"><img src="docs/demo.gif" width="720" alt="다크패턴 가이드 페이지를 스크롤하는 모습: 핵심 요약, 4개 범주·13개 유형, 점검표, 유형별 예시 화면 확대 보기, 문제 사례와 권장 방법, 제재 수위, FAQ"></a>
+
 - 13개 유형별로 문제 사례와 권장 방법을 나란히 정리
 - 공정위 원문에 실린 예시 화면 29장
 - 우리 서비스 점검표 (체크 후 마크다운으로 복사)

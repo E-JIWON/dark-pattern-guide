@@ -1,5 +1,7 @@
 # 다크패턴 가이드라인 정리
 
+[![License](https://img.shields.io/github/license/E-JIWON/dark-pattern-guide?color=2ea043)](LICENSE) [![Website](https://img.shields.io/website?url=https%3A%2F%2Fe-jiwon.github.io%2Fdark-pattern-guide%2F&label=%EC%9B%B9%EC%97%90%EC%84%9C%20%EB%B3%B4%EA%B8%B0&up_message=online)](https://e-jiwon.github.io/dark-pattern-guide/) ![공정위 가이드라인](https://img.shields.io/badge/%EA%B3%B5%EC%A0%95%EC%9C%84%20%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8-2026.10.6-1f6feb)
+
 공정거래위원회가 2026년 10월 6일 배포한 **「다크패턴 방지를 위한 온라인 인터페이스 운영 가이드라인」**을 기획자·개발자·디자이너가 읽기 쉽게 정리했습니다.
 
 **👉 웹에서 보기: https://e-jiwon.github.io/dark-pattern-guide/**
